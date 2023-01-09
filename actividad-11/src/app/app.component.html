@@ -1,0 +1,31 @@
+<div class="contenedor">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <h1>FORMULARIO</h1>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Nombre" formControlName="name" minlength="10">
+      <span class="text-danger" *ngIf="(submitted) && formulario.controls.name.errors?.minlength?.requiredLength">
+        (Debe tener como mínimo 10 caracteres)
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" formControlName="email">
+      <span class="text-danger" *ngIf="(submitted) && formulario.controls.email.touched && formulario.controls.email.errors?.email">
+        (Email no es válido)
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="mensaje" class="form-label">Mensaje</label>
+      <textarea class="form-control" id="mensaje" rows="3" formControlName="mensaje" maxlength="500"></textarea>
+      <span class="text-danger" *ngIf="(submitted) && formulario.controls.mensaje.errors?.required">
+        (El mensaje no puede quedar vacio)
+      </span>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Confirmar</button>
+    </div>
+    <div>{{this.resultado}}</div>
+  </form>
+</div>
